@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: percona-mysql-operator
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: percona
+  source:
+    repoURL: https://percona.github.io/percona-helm-charts/
+    chart: pxc-operator
+    targetRevision: 1.14.0 # Use the latest or desired version
+    helm:
+      releaseName: pxc-operator
+      values: |
+        watchAllNamespaces: false
+        namespace: percona
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
