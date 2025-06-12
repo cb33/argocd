@@ -5,9 +5,6 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: percona
   source:
     repoURL: https://percona.github.io/percona-helm-charts/
     chart: pxc-operator
@@ -17,6 +14,9 @@ spec:
       values: |
         watchAllNamespaces: false
         namespace: percona
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: percona
   syncPolicy:
     automated:
       selfHeal: true
