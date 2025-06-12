@@ -1,0 +1,27 @@
+---
+apiVersion: pxc.percona.com/v1
+kind: PerconaXtraDBCluster
+metadata:
+  name: percona-mysql-cluster
+  namespace: percona-mysql-cluster
+spec:
+  crVersion: 1.14.0
+  secretsName: my-cluster-secrets
+  sslSecretName: my-cluster-ssl
+  pxc:
+    size: 3
+    image: percona/percona-xtradb-cluster:8.0.34-27.1
+    volumeSpec:
+      persistentVolumeClaim:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+  proxysql:
+    enabled: true
+    size: 1
+    image: percona/percona-xtradb-cluster-operator:1.14.0-proxysql
+  pmm:
+    enabled: false
+  backup:
+    enabled: false
