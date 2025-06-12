@@ -16,10 +16,10 @@ spec:
       releaseName: pxc-operator
       values: |
         watchAllNamespaces: true
-        namespace: percona
+        namespace: percona-mysql-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: percona
+    namespace: percona-mysql-operator
   syncPolicy:
     automated:
       selfHeal: true
