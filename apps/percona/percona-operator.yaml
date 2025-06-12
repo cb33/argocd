@@ -1,8 +1,11 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: percona-mysql-operator
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
 spec:
   project: default
   source:
