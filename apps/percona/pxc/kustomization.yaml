@@ -1,2 +1,3 @@
 resources:
   - cr.yaml
+  - namespace.yaml
